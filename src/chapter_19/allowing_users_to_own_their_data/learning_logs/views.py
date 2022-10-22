@@ -5,6 +5,7 @@ from django.http import Http404
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
 
+
 def index(request):
     """The home page for Learning Log."""
     return render(request, 'learning_logs/index.html')
@@ -28,7 +29,7 @@ def topic(request, topic_id):
     context = {'topic': topic, 'entries': entries}
     return render(request, 'learning_logs/topic.html', context)
 
-@login_required
+@login_required    
 def new_topic(request):
     """Add a new topic."""
     if request.method != 'POST':
@@ -47,7 +48,7 @@ def new_topic(request):
     context = {'form': form}
     return render(request, 'learning_logs/new_topic.html', context)
 
-@login_required
+@login_required    
 def new_entry(request, topic_id):
     """Add a new entry for a particular topic."""
     topic = Topic.objects.get(id=topic_id)
@@ -75,7 +76,7 @@ def edit_entry(request, entry_id):
     topic = entry.topic
     if topic.owner != request.user:
         raise Http404
-    
+
     if request.method != 'POST':
         # Initial request; pre-fill form with the current entry.
         form = EntryForm(instance=entry)

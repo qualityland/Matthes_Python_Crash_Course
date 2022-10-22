@@ -1,9 +1,8 @@
-__pycache__/
+.DS_Store
 
+__pycache__/
 *.pyc
-notes/
 
 *_env/
-*_env*/
 
-*.DS_Store
+online_resources_site/site/
